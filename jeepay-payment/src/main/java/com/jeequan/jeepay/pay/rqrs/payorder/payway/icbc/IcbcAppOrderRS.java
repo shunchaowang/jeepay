@@ -7,6 +7,5 @@ import lombok.Data;
 @Data
 public class IcbcAppOrderRS extends UnifiedOrderRS {
 
-  private String payData;
 
 }
