@@ -38,7 +38,7 @@ import com.jeequan.jeepay.pay.rqrs.payorder.payway.WxLiteOrderRQ;
 import com.jeequan.jeepay.pay.rqrs.payorder.payway.WxNativeOrderRQ;
 import com.jeequan.jeepay.pay.rqrs.payorder.payway.YsfBarOrderRQ;
 import com.jeequan.jeepay.pay.rqrs.payorder.payway.YsfJsapiOrderRQ;
-import com.jeequan.jeepay.pay.rqrs.payorder.payway.icbc.IcbcAppOrderRQ;
+import com.jeequan.jeepay.pay.rqrs.payorder.payway.EmsOrderRQ;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -226,9 +226,9 @@ public class UnifiedOrderRQ extends AbstractMchAppRQ {
           StringUtils.defaultIfEmpty(this.channelExtra, "{}"), AliOcOrderRQ.class);
       BeanUtils.copyProperties(this, bizRQ);
       return bizRQ;
-    } else if (PAY_WAY_CODE.ICBC_APP.equals(wayCode)) {
-      IcbcAppOrderRQ bizRQ = JSONObject.parseObject(
-          StringUtils.defaultIfEmpty(this.channelExtra, "{}"), IcbcAppOrderRQ.class);
+    } else if (PAY_WAY_CODE.EMS_PC.equals(wayCode)) {
+      EmsOrderRQ bizRQ = JSONObject.parseObject(
+          StringUtils.defaultIfEmpty(this.channelExtra, "{}"), EmsOrderRQ.class);
       BeanUtils.copyProperties(this, bizRQ);
       return bizRQ;
     }

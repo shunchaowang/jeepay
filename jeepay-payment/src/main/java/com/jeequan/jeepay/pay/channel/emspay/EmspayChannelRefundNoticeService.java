@@ -24,7 +24,7 @@ public class EmspayChannelRefundNoticeService extends AbstractChannelRefundNotic
 
   @Override
   public String getIfCode() {
-    return IF_CODE.ICBCPAY;
+    return IF_CODE.EMSPAY;
   }
 
   @Override

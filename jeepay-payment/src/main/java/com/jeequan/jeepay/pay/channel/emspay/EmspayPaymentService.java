@@ -16,7 +16,7 @@ public class EmspayPaymentService extends AbstractPaymentService {
 
   @Override
   public String getIfCode() {
-    return CS.IF_CODE.ICBCPAY;
+    return CS.IF_CODE.EMSPAY;
   }
 
   @Override
