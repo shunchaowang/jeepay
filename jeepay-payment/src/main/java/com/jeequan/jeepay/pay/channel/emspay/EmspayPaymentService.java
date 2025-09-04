@@ -1,4 +1,4 @@
-package com.jeequan.jeepay.pay.channel.icbcpay;
+package com.jeequan.jeepay.pay.channel.emspay;
 
 import com.jeequan.jeepay.core.constants.CS;
 import com.jeequan.jeepay.core.entity.PayOrder;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
-public class IcbcpayPaymentService extends AbstractPaymentService {
+public class EmspayPaymentService extends AbstractPaymentService {
 
   @Override
   public String getIfCode() {

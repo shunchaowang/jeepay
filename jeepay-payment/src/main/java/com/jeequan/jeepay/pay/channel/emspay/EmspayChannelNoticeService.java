@@ -1,4 +1,4 @@
-package com.jeequan.jeepay.pay.channel.icbcpay;
+package com.jeequan.jeepay.pay.channel.emspay;
 
 import com.alibaba.fastjson.JSONObject;
 import com.jeequan.jeepay.core.constants.CS;
@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
-public class IcbcpayChannelNoticeService extends AbstractChannelNoticeService {
+public class EmspayChannelNoticeService extends AbstractChannelNoticeService {
 
 
   @Override
