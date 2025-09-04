@@ -5,9 +5,9 @@ import com.jeequan.jeepay.pay.rqrs.payorder.UnifiedOrderRQ;
 import lombok.Data;
 
 @Data
-public class EmsOrderRQ extends UnifiedOrderRQ {
+public class EmsCcOrderRQ extends UnifiedOrderRQ {
 
-  public EmsOrderRQ() {
-    this.setWayCode(PAY_WAY_CODE.EMS_PC);
+  public EmsCcOrderRQ() {
+    this.setWayCode(PAY_WAY_CODE.EMS_CC);
   }
 }
