@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.jeequan.jeepay.pay.channel.emspay.payway;
+package com.jeequan.jeepay.pay.channel.plspay.payway;
 
 import com.alibaba.fastjson.JSONObject;
 import com.jeequan.jeepay.core.entity.PayOrder;
@@ -42,7 +42,7 @@ import org.springframework.stereotype.Service;
  * @date 2022/8/11 15:37
  */
 @Service("plspayPaymentByEMSCC") //Service Name需保持全局唯一性
-public class EmsCc extends PlspayPaymentService {
+public class Ems extends PlspayPaymentService {
 
     @Override
     public String preCheck(UnifiedOrderRQ rq, PayOrder payOrder) {
