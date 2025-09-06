@@ -1,4 +1,4 @@
-package com.jeequan.jeepay.pay.channel.plspay.payway.ems;
+package com.jeequan.jeepay.pay.channel.emspay.payway.ems;
 
 import lombok.Builder;
 import lombok.Data;
