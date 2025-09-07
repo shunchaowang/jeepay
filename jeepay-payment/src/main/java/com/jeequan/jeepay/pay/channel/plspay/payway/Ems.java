@@ -40,7 +40,7 @@ import org.springframework.stereotype.Service;
  * @site https://www.jeequan.com
  * @date 2022/8/11 15:37
  */
-@Service("plspayPaymentByEMSCC") //Service Name需保持全局唯一性
+@Service("plspayPaymentByEmsService") //Service Name需保持全局唯一性
 public class Ems extends PlspayPaymentService {
 
   @Override
