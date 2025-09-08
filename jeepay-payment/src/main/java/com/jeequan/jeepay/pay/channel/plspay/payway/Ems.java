@@ -16,12 +16,14 @@
 package com.jeequan.jeepay.pay.channel.plspay.payway;
 
 import com.alibaba.fastjson.JSONObject;
+import com.jeequan.jeepay.core.constants.CS;
 import com.jeequan.jeepay.core.entity.PayOrder;
 import com.jeequan.jeepay.core.model.params.plspay.PlspayConfig;
 import com.jeequan.jeepay.exception.JeepayException;
 import com.jeequan.jeepay.model.PayOrderCreateReqModel;
 import com.jeequan.jeepay.pay.channel.plspay.PlspayKit;
 import com.jeequan.jeepay.pay.channel.plspay.PlspayPaymentService;
+import com.jeequan.jeepay.pay.channel.plspay.payway.ems.EmsService;
 import com.jeequan.jeepay.pay.model.MchAppConfigContext;
 import com.jeequan.jeepay.pay.rqrs.AbstractRS;
 import com.jeequan.jeepay.pay.rqrs.msg.ChannelRetMsg;
@@ -40,8 +42,14 @@ import org.springframework.stereotype.Service;
  * @site https://www.jeequan.com
  * @date 2022/8/11 15:37
  */
-@Service("plspayPaymentByEmsService") //Service Name需保持全局唯一性
+@Service //Service Name需保持全局唯一性
 public class Ems extends PlspayPaymentService {
+
+  private final EmsService emsService;
+
+  public Ems(EmsService emsService) {
+    this.emsService = emsService;
+  }
 
   @Override
   public String preCheck(UnifiedOrderRQ rq, PayOrder payOrder) {
@@ -60,32 +68,34 @@ public class Ems extends PlspayPaymentService {
       // 构建请求数据
       PayOrderCreateReqModel model = new PayOrderCreateReqModel();
       // 支付方式
-      model.setWayCode(PlspayConfig.ALI_BAR);
+      model.setWayCode(PlspayConfig.EMS);
       // 异步通知地址
       model.setNotifyUrl(getNotifyUrl());
-      // 用户付款码值
-      JSONObject channelExtra = new JSONObject();
-      channelExtra.put("authCode", bizRQ.getAuthCode());
-      model.setChannelExtra(channelExtra.toString());
 
       // 发起统一下单
       PayOrderCreateResponse response = PlspayKit.payRequest(payOrder, mchAppConfigContext, model);
       // 下单返回状态
       Boolean isSuccess = PlspayKit.checkPayResp(response, mchAppConfigContext);
 
-      // 下单成功
       if (isSuccess) {
-        if (PlspayConfig.PAY_STATE_SUCCESS.equals(response.getData().getString("orderState"))) {
-          // 支付成功
-          channelRetMsg.setChannelState(ChannelRetMsg.ChannelState.CONFIRM_SUCCESS);
+        // 下单成功
+        String payUrl = response.getData().getString("payData");
+        String payDataType = response.getData().getString("payDataType");
+        if (CS.PAY_DATA_TYPE.FORM.equals(payDataType)) {
+          //表单方式
+          res.setFormContent(payUrl);
+        } else if (CS.PAY_DATA_TYPE.CODE_IMG_URL.equals(payDataType)) {
+          //二维码图片地址
+          res.setCodeImgUrl(payUrl);
         } else {
-          // 支付中
-          channelRetMsg.setChannelState(ChannelRetMsg.ChannelState.WAITING);
+          // 默认都为 payUrl方式
+          res.setPayUrl(payUrl);
         }
         channelRetMsg.setChannelOrderId(response.get().getPayOrderId());
+        channelRetMsg.setChannelState(ChannelRetMsg.ChannelState.WAITING);
       } else {
         channelRetMsg.setChannelState(ChannelRetMsg.ChannelState.CONFIRM_FAIL);
-        channelRetMsg.setChannelErrCode(response.getCode() + "");
+        channelRetMsg.setChannelErrCode(response.getCode()+"");
         channelRetMsg.setChannelErrMsg(response.getMsg());
       }
     } catch (JeepayException e) {

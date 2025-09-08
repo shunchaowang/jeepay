@@ -1,10 +1,10 @@
 package com.jeequan.jeepay.pay.rqrs.payorder.payway;
 
-import com.jeequan.jeepay.pay.rqrs.payorder.UnifiedOrderRS;
+import com.jeequan.jeepay.pay.rqrs.payorder.CommonPayDataRS;
 import lombok.Data;
 
 @Data
-public class EmsOrderRS extends UnifiedOrderRS {
+public class EmsOrderRS extends CommonPayDataRS {
 
 
 }
