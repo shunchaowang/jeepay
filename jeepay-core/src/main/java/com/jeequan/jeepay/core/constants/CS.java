@@ -170,6 +170,7 @@ public class CS {
     String XXPAY = "xxpay";     // 小新支付
     String PPPAY = "pppay";     // Paypal 支付
     String PLSPAY = "plspay";     // 计全支付plus
+    String ICBCPAY = "icbcpay"; // 测试工行支付
   }
 
 
@@ -208,7 +209,7 @@ public class CS {
 
     String PP_PC = "PP_PC"; // Paypal 支付
 
-    String EMS = "EMS";
+    String ICBC_APP = "ICBC_APP";
   }
 
   //支付数据包 类型
