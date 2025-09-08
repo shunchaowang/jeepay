@@ -26,7 +26,4 @@ public class EmsOrderRQ extends CommonPayDataRQ {
   private String cardExpiryYear; // encrypted via rsa
   private String cvv; // encrypted via rsa
 
-  public EmsOrderRQ() {
-    this.setWayCode(PAY_WAY_CODE.EMS);
-  }
 }
