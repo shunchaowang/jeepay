@@ -1,10 +1,10 @@
-package com.jeequan.jeepay.pay.rqrs.payorder.payway;
+package com.jeequan.jeepay.pay.emspay;
 
-import com.jeequan.jeepay.pay.rqrs.payorder.CommonPayDataRQ;
+import com.jeequan.jeepay.pay.rqrs.payorder.UnifiedOrderRQ;
 import lombok.Data;
 
 @Data
-public class EmsDirectOrderRQ extends CommonPayDataRQ {
+public class EmsDirectOrderRQ extends UnifiedOrderRQ {
 
   // these fields inherit from the unified order rq: amount (convert from long to string), currency,
   // clientId, notifyUrl, returnUrl.

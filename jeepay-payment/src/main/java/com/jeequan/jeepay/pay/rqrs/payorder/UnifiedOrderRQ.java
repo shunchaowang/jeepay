@@ -29,7 +29,7 @@ import com.jeequan.jeepay.pay.rqrs.payorder.payway.AliPcOrderRQ;
 import com.jeequan.jeepay.pay.rqrs.payorder.payway.AliQrOrderRQ;
 import com.jeequan.jeepay.pay.rqrs.payorder.payway.AliWapOrderRQ;
 import com.jeequan.jeepay.pay.rqrs.payorder.payway.AutoBarOrderRQ;
-import com.jeequan.jeepay.pay.rqrs.payorder.payway.EmsDirectOrderRQ;
+import com.jeequan.jeepay.pay.emspay.EmsDirectOrderRQ;
 import com.jeequan.jeepay.pay.rqrs.payorder.payway.PPPcOrderRQ;
 import com.jeequan.jeepay.pay.rqrs.payorder.payway.QrCashierOrderRQ;
 import com.jeequan.jeepay.pay.rqrs.payorder.payway.WxBarOrderRQ;
