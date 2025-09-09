@@ -16,9 +16,9 @@ public class EmspayNormalMchParams extends NormalMchParams {
 
   private String env; // sandbox or production
   private String emsDirectUrl;
-  private String secretCode;
-  private String rsaPublicKeyPem;
-  private String bearerToken;
+//  private String secretCode; // this will be in if config
+//  private String rsaPublicKeyPem; // this will be in if config
+//  private String bearerToken; // this will be in if config
 
   @Override
   public String deSenData() {
