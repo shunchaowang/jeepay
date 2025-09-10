@@ -18,11 +18,13 @@ import org.springframework.web.client.RestClient;
 public class EmsDirect extends EmsPaymentService {
 
   private final RestClient restClient;
+  private final String emsPublicKeyBase64;
 
   public EmsDirect(SystemYmlConfig config) {
     restClient = RestClient.builder().baseUrl(config.getEmsUrl())
         .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
         .defaultHeader(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE).build();
+    emsPublicKeyBase64 = config.getEmsPublicKey();
   }
 
 

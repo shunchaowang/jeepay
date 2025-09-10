@@ -43,4 +43,6 @@ public class SystemYmlConfig {
 
   private String emsUrl;
 
+  private String emsPublicKey;
+
 }

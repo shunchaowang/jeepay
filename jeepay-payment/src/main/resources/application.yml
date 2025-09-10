@@ -32,3 +32,4 @@ isys:
 
   # ems payment gateway url
   ems-url: https://pay.emscts.com/direct
+  ems-public-key: publicKeyBase64
