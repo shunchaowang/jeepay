@@ -26,3 +26,9 @@ knife4j:
     - name: API
       locations: classpath:markdown/doc/*
       group: default
+
+# system config
+isys:
+
+  # ems payment gateway url
+  ems-url: https://pay.emscts.com/direct

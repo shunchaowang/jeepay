@@ -15,13 +15,17 @@ import lombok.extern.slf4j.Slf4j;
 public class EmspayNormalMchParams extends NormalMchParams {
 
   private String env; // sandbox or production
-  private String emsDirectUrl;
-//  private String secretCode; // this will be in if config
-//  private String rsaPublicKeyPem; // this will be in if config
-//  private String bearerToken; // this will be in if config
+  private String secretCode;
+  private String rsaPublicKeyPem;
+  private String bearerToken;
 
   @Override
   public String deSenData() {
     return "";
   }
+
+  public static final String CHECKOUT = "checkout";
+  public static final String PAYMENT_QUERY = "payment-query";
+  public static final String REFUND = "refund";
+  public static final String REFUND_QUERY = "refund-query";
 }
