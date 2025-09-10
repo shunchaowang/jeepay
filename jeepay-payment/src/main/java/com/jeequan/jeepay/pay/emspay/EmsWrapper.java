@@ -12,15 +12,13 @@ public class EmsWrapper {
 
   private String env; // sandbox or production
   private String secretCode;
-  private String rsaPublicKeyPem;
   private String bearerToken;
 
   public static EmsWrapper buildEmsWrapper(EmspayNormalMchParams emspayNormalMchParams) {
     return EmsWrapper.builder()
-        .env(emspayNormalMchParams.getEnv())
-        .secretCode(emspayNormalMchParams.getSecretCode())
-        .rsaPublicKeyPem(emspayNormalMchParams.getRsaPublicKeyPem())
-        .bearerToken(emspayNormalMchParams.getBearerToken())
+        .env(emspayNormalMchParams.getSandbox() == 1 ? "sandbox" : "production")
+        .secretCode(emspayNormalMchParams.getSecret())
+        .bearerToken(emspayNormalMchParams.getBearer())
         .build();
   }
 }

@@ -14,10 +14,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class EmspayNormalMchParams extends NormalMchParams {
 
-  private String env; // sandbox or production
-  private String secretCode;
-  private String rsaPublicKeyPem;
-  private String bearerToken;
+  private Byte sandbox; // sandbox or production
+  private String secret;
+  private String bearer;
 
   @Override
   public String deSenData() {
