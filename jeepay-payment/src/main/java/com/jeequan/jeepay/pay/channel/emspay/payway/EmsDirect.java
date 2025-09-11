@@ -3,6 +3,7 @@ package com.jeequan.jeepay.pay.channel.emspay.payway;
 import com.jeequan.jeepay.core.entity.PayOrder;
 import com.jeequan.jeepay.pay.channel.emspay.EmsPaymentService;
 import com.jeequan.jeepay.pay.config.SystemYmlConfig;
+import com.jeequan.jeepay.pay.emspay.EmsDirectOrderRQ;
 import com.jeequan.jeepay.pay.emspay.EmsWrapper;
 import com.jeequan.jeepay.pay.model.MchAppConfigContext;
 import com.jeequan.jeepay.pay.rqrs.AbstractRS;
@@ -31,6 +32,8 @@ public class EmsDirect extends EmsPaymentService {
   @Override
   public AbstractRS pay(UnifiedOrderRQ bizRQ, PayOrder payOrder,
       MchAppConfigContext mchAppConfigContext) throws Exception {
+
+    EmsDirectOrderRQ rq = (EmsDirectOrderRQ) bizRQ;
 
     EmsWrapper emsWrapper = configContextQueryService.getEmsWrapper(mchAppConfigContext);
 
