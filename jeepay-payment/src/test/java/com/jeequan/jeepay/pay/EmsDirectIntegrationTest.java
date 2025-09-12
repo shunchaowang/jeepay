@@ -1,24 +1,16 @@
-package com.jeequan.jeepay.pay.ctrl.payorder;
+package com.jeequan.jeepay.pay;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jeequan.jeepay.pay.bootstrap.JeepayPayApplication;
 import com.jeequan.jeepay.pay.emspay.EmsDirectOrderRQ;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.web.servlet.MockMvc;
 
-@SpringBootTest
+//@SpringBootTest
+//@ExtendWith(SpringExtension.class)
 //@AutoConfigureMockMvc
-@ContextConfiguration(classes = {JeepayPayApplication.class})
-class UnifiedOrderControllerTest {
+//@ContextConfiguration(classes = {JeepayPayApplication.class})
+class EmsDirectIntegrationTest {
 
 //  @MockBean
 //  private PayWayService payWayService;
