@@ -28,6 +28,7 @@ import com.jeequan.jeepay.pay.service.ConfigContextQueryService;
 import com.jeequan.jeepay.service.impl.PayWayService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -42,14 +43,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UnifiedOrderController extends AbstractPayOrderController {
 
-  private final PayWayService payWayService;
-  private final ConfigContextQueryService configContextQueryService;
-
-  public UnifiedOrderController(PayWayService payWayService,
-      ConfigContextQueryService configContextQueryService) {
-    this.payWayService = payWayService;
-    this.configContextQueryService = configContextQueryService;
-  }
+  @Autowired
+  private PayWayService payWayService;
+  @Autowired
+  private ConfigContextQueryService configContextQueryService;
 
   /**
    * 统一下单接口

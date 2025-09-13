@@ -1,10 +1,11 @@
 package com.jeequan.jeepay.pay;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jeequan.jeepay.pay.emspay.EmsDirectOrderRQ;
 import org.junit.jupiter.api.Test;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.RestClient;
 
 //@SpringBootTest
 //@ExtendWith(SpringExtension.class)
@@ -44,38 +45,82 @@ class EmsDirectIntegrationTest {
      *         paramsMap.put("signType", "MD5");                        // 签名类型
      *         paramsMap.put("channelExtra", "{\"authCode\":\"284957415846666792\"}");  // 渠道参数
      */
+
+    String baseUrl = "http://localhost:9216";
+    String secretCode = "secret";
+    String mchNo = "M1756666603";
+    String appId = "68bc9ca868d00aa3cd7d66e4";
+    String mchOrderNo = "11111111";
+    Long amount = 12L;
+    String currency = "CNY";
+    String clientId = "192.166.1.132";
+    String subject = "subject";
+    String body = "body";
+    String notifyUrl = "http://localhost/notify";
+    String returnUrl = "http://localhost/return";
+    String reqTime = "1694051706";
+    String version = "1.0";
+    String signType = "MD5";
+    String wayCode = "EMS_DIRECT";
+//    String channelExtra = "{\"cardExpiryMonth\":\"12\", \"cardExpiryYear\":\"30\", \"cvv\":\"666\"}";
+
+    String channelExtra = """
+        {
+          "cardExpiryMonth": "12",
+          "cardExpiryYear": "30",
+          "cvv": "666",
+          "cardNumber": "1111222233334444",
+          "cardHolderName": "name",
+          "customerEmail": "email@email.com",
+          "customerPhone": "1238785432",
+          "customerAddress": "Sesame St",
+          "customerCountry": "US",
+          "sign": "sign"
+        }
+        """;
+
     EmsDirectOrderRQ request = new EmsDirectOrderRQ();
-    request.setSubject("Subject");
-    request.setBody("Body");
-    request.setSignType("MD5");
-    request.setVersion("1.0");
-    request.setCardExpiryMonth("12");
-    request.setCardExpiryYear("28");
-    request.setCvv("666");
-    request.setCustomerAddress("address");
-    request.setCardNumber("1111222233334444");
-    request.setCardHolderName("name");
-    request.setCustomerCountry("country");
-    request.setCustomerEmail("email@email.com");
-    request.setCustomerPhone("13911189012");
-    request.setAmount(12L);
-    request.setCurrency("USD");
-    request.setClientIp("clientIp");
-    request.setAppId("appId");
-    request.setMchNo("merchantId");
-    request.setMchOrderNo("merchOrderNo");
-    request.setNotifyUrl("notifyUrl");
-    request.setReturnUrl("returnUrl");
-    String channelExtra = "{\"name\":\"ems\", \"otherParam\":\"other\"}";
+    request.setSubject(subject);
+    request.setBody(body);
+    request.setSignType(signType);
+    request.setVersion(version);
+//    request.setCardExpiryMonth("12");
+//    request.setCardExpiryYear("28");
+//    request.setCvv("666");
+//    request.setCustomerAddress("address");
+//    request.setCardNumber("1111222233334444");
+//    request.setCardHolderName("name");
+//    request.setCustomerCountry("country");
+//    request.setCustomerEmail("email@email.com");
+//    request.setCustomerPhone("13911189012");
+//    request.setSign("sign");
+    request.setAmount(amount);
+    request.setCurrency(currency);
+    request.setClientIp(clientId);
+    request.setAppId(appId);
+    request.setMchNo(mchNo);
+    request.setMchOrderNo(mchOrderNo);
+    request.setNotifyUrl(notifyUrl);
+    request.setReturnUrl(returnUrl);
+    request.setWayCode(wayCode);
+    request.setReqTime(reqTime);
     request.setChannelExtra(channelExtra);
-    request.setSign("sign");
-    request.setWayCode("EMS_DIRECT");
-    request.setReqTime("20251010");
     ObjectMapper objectMapper = new ObjectMapper();
     String json = objectMapper.writeValueAsString(request);
 //    mockMvc.perform(post("/api/pay/unifiedOrder")
 //            .contentType(MediaType.APPLICATION_JSON_UTF8)
 //            .content(json))
 //        .andExpect(status().isOk());
+
+    RestClient restClient = RestClient.builder().build();
+
+    ResponseEntity<Void> response = restClient.post()
+        .uri(baseUrl + "/api/pay/emsDirectOrder")
+//        .uri(baseUrl + "/api/pay/unifiedOrder")
+        .contentType(MediaType.APPLICATION_JSON)
+        .body(request)
+        .retrieve()
+        .toBodilessEntity();
+
   }
 }
