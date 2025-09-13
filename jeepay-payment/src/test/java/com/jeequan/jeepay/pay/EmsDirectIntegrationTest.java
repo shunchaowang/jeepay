@@ -117,15 +117,6 @@ class EmsDirectIntegrationTest {
 //            .content(json))
 //        .andExpect(status().isOk());
 
-    RestClient restClient = RestClient.builder().build();
-
-    ResponseEntity<Void> response = restClient.post()
-        .uri(baseUrl + "/api/pay/emsDirectOrder")
-//        .uri(baseUrl + "/api/pay/unifiedOrder")
-        .contentType(MediaType.APPLICATION_JSON)
-        .body(request)
-        .retrieve()
-        .toBodilessEntity();
 
     Jeepay.setApiBase("http://localhost:9216");
     Jeepay.mchNo="M1757357037";

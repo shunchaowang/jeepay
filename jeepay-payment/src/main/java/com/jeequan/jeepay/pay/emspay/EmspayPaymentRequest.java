@@ -27,4 +27,25 @@ public class EmspayPaymentRequest {
   private String siteId; // your website uuid
   private String env; // sandbox or production
   private String sign; // sha512 signature (includes encrypted card fields
+
+  public static EmspayPaymentRequest build(EmsDirectOrderRQ emsDirectOrderRQ) {
+    return EmspayPaymentRequest.builder()
+        .amount(String.valueOf(emsDirectOrderRQ.getAmount()))
+        .currency(emsDirectOrderRQ.getCurrency())
+        .merchantReference("to generate")
+        .notifyUrl(emsDirectOrderRQ.getNotifyUrl()) // should be our notify then notify the merchant
+        .returnUrl(emsDirectOrderRQ.getReturnUrl()) // the same
+        .customerAddress(emsDirectOrderRQ.getCustomerAddress())
+        .customerCountry(emsDirectOrderRQ.getCustomerCountry())
+        .customerEmail(emsDirectOrderRQ.getCustomerEmail())
+        .customerIp(emsDirectOrderRQ.getClientIp())
+        .customerPhone(emsDirectOrderRQ.getCustomerPhone())
+        .cardHolderName(emsDirectOrderRQ.getCardHolderName())
+        .cardNumber(emsDirectOrderRQ.getCardNumber())
+        .cardExpiryMonth(emsDirectOrderRQ.getCardExpiryMonth())
+        .cardExpiryYear(emsDirectOrderRQ.getCardExpiryYear())
+        .cvv(emsDirectOrderRQ.getCvv())
+        .siteId("to generate")
+        .build();
+  }
 }

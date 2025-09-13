@@ -44,6 +44,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Slf4j
 @RestController
+@Deprecated
 public class EmsDirectOrderController extends AbstractPayOrderController {
 
   private final PayWayService payWayService;
