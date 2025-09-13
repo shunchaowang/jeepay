@@ -1,7 +1,7 @@
 package com.jeequan.jeepay.pay.channel.emspay.payway;
 
 import com.jeequan.jeepay.core.entity.PayOrder;
-import com.jeequan.jeepay.pay.channel.emspay.EmsPaymentService;
+import com.jeequan.jeepay.pay.channel.emspay.EmspayPaymentService;
 import com.jeequan.jeepay.pay.config.SystemYmlConfig;
 import com.jeequan.jeepay.pay.emspay.EmsDirectOrderRQ;
 import com.jeequan.jeepay.pay.emspay.EmsWrapper;
@@ -16,12 +16,12 @@ import org.springframework.web.client.RestClient;
 
 @Service
 @Slf4j
-public class EmsDirect extends EmsPaymentService {
+public class EmspayDirect extends EmspayPaymentService {
 
   private final RestClient restClient;
   private final String emsPublicKeyBase64;
 
-  public EmsDirect(SystemYmlConfig config) {
+  public EmspayDirect(SystemYmlConfig config) {
     restClient = RestClient.builder().baseUrl(config.getEmsUrl())
         .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
         .defaultHeader(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE).build();

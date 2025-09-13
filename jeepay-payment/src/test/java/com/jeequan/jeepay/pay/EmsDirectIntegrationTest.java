@@ -1,7 +1,12 @@
 package com.jeequan.jeepay.pay;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.jeequan.jeepay.Jeepay;
+import com.jeequan.jeepay.JeepayClient;
+import com.jeequan.jeepay.model.PayOrderCreateReqModel;
 import com.jeequan.jeepay.pay.emspay.EmsDirectOrderRQ;
+import com.jeequan.jeepay.request.PayOrderCreateRequest;
+import com.jeequan.jeepay.response.PayOrderCreateResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -121,6 +126,34 @@ class EmsDirectIntegrationTest {
         .body(request)
         .retrieve()
         .toBodilessEntity();
+
+    Jeepay.setApiBase("http://localhost:9216");
+    Jeepay.mchNo="M1757357037";
+    Jeepay.appId="68bf23edff7a7c2f6ee018ff";
+    Jeepay.apiKey="123456";
+
+    JeepayClient jeepayClient = JeepayClient.getInstance(Jeepay.appId, Jeepay.apiKey);
+    PayOrderCreateRequest payOrderCreateRequest = new PayOrderCreateRequest();
+    PayOrderCreateReqModel model = new PayOrderCreateReqModel();
+    model.setMchNo(Jeepay.mchNo);
+    model.setAppId(Jeepay.appId);
+    model.setMchOrderNo(mchOrderNo);
+    model.setWayCode(wayCode);
+    model.setAmount(amount);
+    model.setCurrency(currency);
+    model.setClientIp(clientId);
+    model.setSubject(subject);
+    model.setBody(body);
+    model.setNotifyUrl(notifyUrl);
+    model.setReturnUrl(returnUrl);
+    model.setChannelExtra(channelExtra);
+    model.setExtParam("");
+    payOrderCreateRequest.setBizModel(model);
+
+    PayOrderCreateResponse payOrderCreateResponse = jeepayClient.execute(payOrderCreateRequest);
+
+    payOrderCreateResponse.checkSign(Jeepay.apiKey);
+    payOrderCreateResponse.isSuccess(Jeepay.apiKey);
 
   }
 }

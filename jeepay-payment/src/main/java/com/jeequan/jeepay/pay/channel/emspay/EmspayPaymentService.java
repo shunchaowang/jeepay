@@ -10,7 +10,7 @@ import com.jeequan.jeepay.pay.util.PaywayUtil;
 import org.springframework.stereotype.Service;
 
 @Service
-public class EmsPaymentService extends AbstractPaymentService {
+public class EmspayPaymentService extends AbstractPaymentService {
 
   @Override
   public String getIfCode() {
